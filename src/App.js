@@ -1,23 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useContext, useState } from "react";
+import Counter from "./Counter";
+import ToDoList from "./ToDoList";
+import Posts from "./Posts";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import SinglePost from "./SinglePost";
+import { Routes } from "react-router-dom";
+
+const UserContext = createContext();
+
+function Component1() {
+  const [user, setUser] = useState("Petar");
+
+  return (
+    <UserContext.Provider value={user}>
+      <div>
+        <h1>Hello, {user}</h1>
+        <Component2 />
+      </div>
+    </UserContext.Provider>
+  );
+}
+
+function Component5() {
+  const user = useContext(UserContext);
+
+  return (
+    <div>
+      <h1>Coponent 5</h1>
+      <p>Ime korisnika u komponenti br. 5 je: {user}</p>
+    </div>
+  );
+}
+
+function Component2() {
+  return (
+    <div>
+      <h1>Component 2</h1>
+      <Component3 />
+    </div>
+  );
+}
+
+function Component3() {
+  return (
+    <div>
+      <h1>Component 3</h1>
+      <Component4 />
+    </div>
+  );
+}
+
+function Component4() {
+  return (
+    <div>
+      <h1>Component 4</h1>
+      <Component5 />
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Counter /> */}
+      {/* <ToDoList /> */}
+      <Router>
+        <Routes>
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/:idPosta" element={<SinglePost />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
