@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 import Counter from "./Counter";
 import ToDoList from "./ToDoList";
 import PostList from "./PostList";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import SinglePost from "./SinglePost";
 import { Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
@@ -69,7 +69,7 @@ function App() {
         <Routes>
           <Route path="/posts" element={<PostList />} />
           <Route path="/posts/:idPosta" element={<SinglePost />} />
-          {/* Redirekcija sa osnovnog URL-a na /posts */}
+          {/* navigate sa osnovnog URL-a na /posts */}
           <Route path="/" element={<Navigate to="/posts" />} />
         </Routes>
       </Router>
