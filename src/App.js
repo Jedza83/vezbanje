@@ -1,10 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import Counter from "./Counter";
 import ToDoList from "./ToDoList";
-import Posts from "./Posts";
+import PostList from "./PostList";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import SinglePost from "./SinglePost";
 import { Routes } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const UserContext = createContext();
 
@@ -66,8 +67,10 @@ function App() {
       {/* <ToDoList /> */}
       <Router>
         <Routes>
-          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts" element={<PostList />} />
           <Route path="/posts/:idPosta" element={<SinglePost />} />
+          {/* Redirekcija sa osnovnog URL-a na /posts */}
+          <Route path="/" element={<Navigate to="/posts" />} />
         </Routes>
       </Router>
     </div>

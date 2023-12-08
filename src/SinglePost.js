@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+/* useParams da dohvatim idPosta iz rute a useNavigate za navigaciju na različite rute */
 
 const SinglePost = () => {
   const { idPosta } = useParams();
